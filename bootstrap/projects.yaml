@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: bootstrap-projects
+  namespace: argocd
 spec:
   generators:
   - git:
@@ -19,7 +20,7 @@ spec:
         targetRevision: main
         path: applicationset/examples/list-generator/guestbook/{{cluster}}
       destination:
-        name: in-cluster
+        server: 'https://kubernetes.default.svc'
       syncPolicy:
         automated:
           prune: true
