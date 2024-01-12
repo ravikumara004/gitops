@@ -1,27 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: bootstrap-projects
+  name: guestbook
   namespace: argocd
 spec:
   generators:
-  - git:
-      repoURL:
-      revision: main
-      directories:
-        - path: bootstarp/projects/*
+  - list:
+      elements:
+      - cluster: finance-preprod
+        url: 'https://kubernetes.default.svc'
   template:
     metadata:
-      name: 'bootstrap-{{path.basename}}'
+      name: '{{cluster}}-guestbook'
     spec:
       project: default
       source:
         repoURL: https://github.com/ravikumara004/gitops.git
         targetRevision: main
-        path: '{{path}}'
+        path: bootstarp/projects/
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: '{{url}}'
         namespace: argocd
-      syncPolicy:
-        automated:
-          prune: true
