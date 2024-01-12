@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-projects
+spec:
+  generators:
+  - git:
+      repoURL:
+      revision: main
+      directories:
+        - path: bootstarp/projects/*
+  template:
+    metadata:
+      name: 'bootstrap-{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ravikumara004/gitops.git
+        targetRevision: main
+        path: applicationset/examples/list-generator/guestbook/{{cluster}}
+      destination:
+        name: in-cluster
+      syncPolicy:
+        automated:
+          prune: true
