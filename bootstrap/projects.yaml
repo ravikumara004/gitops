@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/ravikumara004/gitops.git
         targetRevision: main
-        path: bootstarp/projects/*
+        path: bootstarp/projects/poc
       destination:
         server: '{{url}}'
         namespace: argocd
