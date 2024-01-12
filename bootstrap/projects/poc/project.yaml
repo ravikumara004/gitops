@@ -10,10 +10,10 @@ spec:
   description: Example Project
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-  - '*'
+  - https://github.com/ravikumara004/gitops.git
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
-  - name: in-cluster
+  - server: 'https://kubernetes.default.svc'
     namespace: argocd
 
   # Deny all cluster-scoped resources from being created, except for Namespace
