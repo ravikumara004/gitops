@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: projects/poc
   destination:
-    name: in-cluster
+    server: 'https://kubernetes.default.svc'
     namespace: argocd
   syncPolicy:
     automated:
