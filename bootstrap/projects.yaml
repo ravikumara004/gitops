@@ -21,6 +21,7 @@ spec:
         path: applicationset/examples/list-generator/guestbook/{{cluster}}
       destination:
         server: 'https://kubernetes.default.svc'
+        namespace: argocd
       syncPolicy:
         automated:
           prune: true
